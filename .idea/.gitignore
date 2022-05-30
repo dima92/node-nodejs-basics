@@ -1,0 +1,12 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+
+node-nodejs-basics.iml
+modules.xml
+jsLibraryMappings.xml
+vcs.xml
+workspace.xml
+inspectionProfiles

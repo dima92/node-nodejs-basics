@@ -1,25 +1,25 @@
 import {fileURLToPath} from 'url'
 import {dirname} from 'path'
-import {writeFile, access} from 'fs/promises'
-import {constants} from 'fs'
+import {writeFile} from 'fs/promises'
+import * as fs from "fs";
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
-export const create = async () => {
+const fileToPath = __dirname + '\\' + 'files' + '\\' + 'fresh.txt'
 
-  try {
-    const fileToPath = __dirname + '\\' + 'files' + '\\' + 'fresh.txt'
-    await writeFile(fileToPath, 'I am fresh and young', (err) => {
-      err ? console.log(err) : null
-    })
-    await access(fileToPath, constants.F_OK, (err) => {
-      if (err)
-        console.log(err)
-    })
-  } catch (e) {
-    throw new Error('FS operation failed')
-  }
+export const create = async () => {
+  fs.access(fileToPath, fs.constants.R_OK | fs.constants.W_OK, (err) => {
+    console.log('checking access')
+    if (err) {
+      throw new Error('FS operation failed')
+    } else {
+      console.log('File can be read')
+    }
+  })
+  await writeFile(fileToPath, 'I am fresh and young', (err) => {
+    err ? console.log(err) : null
+  })
 };
 
 create()

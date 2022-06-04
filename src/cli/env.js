@@ -1,3 +1,6 @@
 export const parseEnv = () => {
-    // Write your code here 
+  const {env} = process;
+  console.log(env['RSS']);
 };
+
+parseEnv()

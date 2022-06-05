@@ -8,12 +8,11 @@ export const performCalculations = async () => {
     arr.push(new Promise((resolve, reject) => {
       resolve(new workerJS.Worker('./worker.js', {
         workerData: 10 + i
-      }).on('message', msg => {
-        return msg
-      }))
+      }).on('message', data => resolve(data)
+      ))
     }))
   }
-  await Promise.allSettled(arr).then(value => {
+  await Promise.all(arr).then(value => {
     console.log(value)
   })
 };

@@ -1,6 +1,6 @@
 import * as path from 'path'
 import {release, version} from 'os';
-import {createServer} from 'http';
+import {createServer as createServerHttp} from 'http';
 import {fileURLToPath} from "url";
 import {dirname} from "path";
 
@@ -26,12 +26,12 @@ console.log(`Path segment separator is "${path.sep}"`);
 console.log(`Path to current file is ${__filename}`);
 console.log(`Path to current directory is ${__dirname}`);
 
-const createMyServer = createServer((_, res) => {
+const createMyServer = createServerHttp((_, res) => {
   res.end('Request accepted');
 });
 
-export default {
+export {
   unknownObject,
-  createMyServer,
+  createMyServer
 };
 
